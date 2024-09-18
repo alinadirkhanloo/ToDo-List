@@ -1,0 +1,11 @@
+aside {
+  position: fixed;
+  width: 25rem;
+  height: 100%;
+}
+.main-list {
+  height: 100%;
+  max-height: 60vh;
+  padding-right: 8px;
+  overflow-y: scroll;
+}

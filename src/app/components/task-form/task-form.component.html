@@ -1,0 +1,44 @@
+<form [formGroup]="editTaskForm" class="w-full mb-3">
+  <div class="mb-2">
+    <label for="title">Title</label>
+    <input
+      id="title"
+      class="p-2 w-full"
+      type="text"
+      placeholder="title..."
+      formControlName="title"
+    />
+  </div>
+  <div class="mb-2">
+    <label for="description">Description</label>
+    <input
+      id="description"
+      class="p-2 w-full"
+      type="text"
+      placeholder="description..."
+      formControlName="description"
+    />
+  </div>
+  <div class="mb-2">
+    <span class="d-flex align-items-center">
+      <mat-checkbox formControlName="done"></mat-checkbox>
+      <span class="py-1">Done </span>
+    </span>
+  </div>
+
+  <div class="">
+    <button type="button" class="btn btn-primary" (click)="onSubmit()">
+      Save
+    </button>
+
+    @if (!isMainList) {
+    <button
+      type="button"
+      class="btn btn-secondary mx-2"
+      (click)="MoveToMainList()"
+    >
+      Move to Main List
+    </button>
+    }
+  </div>
+</form>

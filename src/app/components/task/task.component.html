@@ -1,0 +1,37 @@
+<div class="d-flex align-items-center justify-content-between">
+  <span class="d-flex align-items-center">
+    @if (editable) {
+    <mat-checkbox
+      [ngModel]="task?.done"
+      (ngModelChange)="checkAsDone($event)"
+    ></mat-checkbox>
+    }
+    <span class="py-1">
+      <p class="mb-0" [ngClass]="{ done: task?.done }">
+        <strong>{{ task?.title }}</strong>
+      </p>
+      <p class="mb-0" [ngClass]="{ done: task?.done }">
+        {{ task?.description }}
+      </p>
+    </span>
+  </span>
+  <span>
+    <button
+      type="button"
+      class="btn btn-danger btn-sm"
+      (click)="deleteTask(task?._id)"
+    >
+      Delete
+    </button>
+    @if (editable) {
+    <button
+      type="button"
+      class="btn btn-warning btn-sm mx-2"
+      (click)="editTask(task?._id)"
+    >
+      Edit
+    </button>
+    }
+  </span>
+</div>
+<hr class="mt-0" />

@@ -1,0 +1,9 @@
+<div class="p-4">
+  <h5>Edit Task</h5>
+  @if (task) {
+  <app-task-form
+    [task]="task"
+    (afterSave)="afterFormSaveClicke($event)"
+  ></app-task-form>
+  }
+</div>

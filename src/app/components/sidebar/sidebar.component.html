@@ -1,0 +1,73 @@
+<aside id="sidebar" class="sidebar sidebar-default open" role="navigation">
+  <div
+    class="d-flex flex-column flex-shrink-0 px-4 py-3 text-bg-dark w-full h-full"
+  >
+    <div class="pt-2">
+      <h6 class="m-0">Lists</h6>
+    </div>
+    <hr class="mt-0" />
+    <app-list-new (afterSave)="loadData()" />
+    <div class="main-list">
+      <ul class="nav nav-pills flex-column mb-auto">
+        @for (item of lists; track $index) {
+
+        <li class="nav-item nav-link" routerLinkActive="active">
+          <a
+            [routerLink]="['/list', item._id, 'tasks']"
+            class="link-underline link-underline-opacity-0 text-white"
+            aria-current="true"
+          >
+            <div
+              class="d-flex w-100 align-items-center justify-content-between"
+            >
+              <span
+                matTooltip="Duble click to edit"
+                *ngIf="editingItemId !== item._id; else editTemplate"
+                (dblclick)="startEditing(item)"
+                >{{ item.title }}</span
+              >
+              <ng-template #editTemplate>
+                <input
+                  type="text"
+                  [(ngModel)]="newTitle"
+                  (blur)="saveTitle(item)"
+                  class="form-control"
+                />
+              </ng-template>
+            </div>
+          </a>
+          <div
+            class="d-flex w-100 align-items-center justify-content-between text-white"
+          >
+            <small>{{ item.date | date : "dd/MM/yyyy" }}</small>
+            <small>
+              <button
+                type="button"
+                class="btn btn-danger btn-sm"
+                (click)="deleteList($event, item._id)"
+              >
+                Delete
+              </button>
+            </small>
+          </div>
+        </li>
+
+        }
+      </ul>
+    </div>
+    <hr />
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item nav-link" routerLinkActive="active">
+        <a
+          routerLink="/list/completed-tasks"
+          class="nav-link text-white"
+          aria-current="true"
+        >
+          <div class="d-flex w-100 align-items-center justify-content-between">
+            <span class="mb-1">Completed tasks</span>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>

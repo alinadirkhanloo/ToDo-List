@@ -1,0 +1,8 @@
+<form [formGroup]="newListForm" class="w-full mb-3" (ngSubmit)="onSubmit()">
+  <input
+    class="p-2 w-full"
+    type="text"
+    placeholder="Create a new list..."
+    formControlName="title"
+  />
+</form>

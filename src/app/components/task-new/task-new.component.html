@@ -1,0 +1,8 @@
+<div class="p-4">
+  <h5>New Task</h5>
+  <app-task-form
+    [listId]="listId"
+    [task]="task"
+    (afterSave)="afterFormSaveClicke($event)"
+  ></app-task-form>
+</div>
