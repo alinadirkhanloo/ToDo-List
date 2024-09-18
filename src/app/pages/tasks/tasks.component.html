@@ -1,0 +1,46 @@
+<mat-drawer-container class="h-full" autosize>
+  <div class="content px-5 py-4">
+    <div class="mb-1">
+      <h3 class="d-flex w-100 align-items-center justify-content-between">
+        <strong>{{ selctedList?.title }}</strong>
+        <strong>{{ tasks?.length }}</strong>
+      </h3>
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="changeFormMode('New'); drawer.toggle()"
+      >
+        Add task
+      </button>
+    </div>
+    <hr />
+    <div class="px-4 py-2">
+      @for (task of tasks; track $index) {
+      <app-task
+        (afterDeleteClicked)="deleteTask($event)"
+        (afterEditClicked)="
+          editTask($event); changeFormMode('Edit'); drawer.toggle()
+        "
+        (aftercheckClicked)="updateTask($event, task._id)"
+        [task]="task"
+      />
+      }
+    </div>
+  </div>
+
+  <mat-drawer #drawer [mode]="'over'" [position]="'end'" mode="side">
+    @switch (formsMode) { @case ('Edit') {
+
+    <app-task-edit
+      (afterSave)="afterSave(); drawer.toggle(); changeFormMode('')"
+      [taskId]="selctedTaskId"
+    ></app-task-edit>
+    } @case ('New') {
+
+    <app-task-new
+      [listId]="id"
+      (afterSave)="afterSave(); drawer.toggle(); changeFormMode('')"
+    />
+    } @default {} }
+  </mat-drawer>
+</mat-drawer-container>

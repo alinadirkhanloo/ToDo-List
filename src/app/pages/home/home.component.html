@@ -1,0 +1,10 @@
+<div class="row h-full m-0">
+  <div class="col-3 p-0">
+    <app-sidebar />
+  </div>
+  <div class="col-9 p-0">
+    <div class="main" *ngIf="loading">
+      <router-outlet />
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="content px-5 py-4">
+  <div class="mb-1">
+    <h3 class="d-flex w-100 align-items-center justify-content-between">
+      <strong>{{ title }}</strong>
+      <strong>{{ tasks?.length }}</strong>
+    </h3>
+  </div>
+  <hr />
+  <div class="px-4 py-2">
+    @for (task of tasks; track $index) {
+    <app-task
+      [editable]="false"
+      (afterDeleteClicked)="deleteTask($event)"
+      [task]="task"
+    />
+    }
+  </div>
+</div>
