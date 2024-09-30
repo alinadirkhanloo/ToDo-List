@@ -41,13 +41,16 @@
           >
             <small>{{ item.date | date : "dd/MM/yyyy" }}</small>
             <small>
-              <button
+              @if(!item.isMain){
+                <button
                 type="button"
                 class="btn btn-danger btn-sm"
                 (click)="deleteList($event, item._id)"
               >
                 Delete
               </button>
+              }
+
             </small>
           </div>
         </li>
